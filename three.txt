@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void swap(int* a, int* b)
+{
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+int main()
+{
+    int num1, num2, num3;
+    printf("Enter the three numbers: ");
+    scanf("%d %d %d", &num1, &num2, &num3);
+    
+    // Swapping the numbers
+    swap(&num1, &num3);
+    
+    // Randomly selecting the winner
+    srand(time(0));
+    int winner = (rand() % 2 == 0) ? num1 : num3;
+    
+    printf("Swapped numbers: %d %d %d\n", num1, num2, num3);
+    printf("Winner: %d\n", winner);
+    
+    return 0;
+}

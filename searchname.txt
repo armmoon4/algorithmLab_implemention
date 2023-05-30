@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_NAME_LENGTH 50
+#define MAX_STUDENTS 5
+
+int searchLastName(char lastName[], char students[][MAX_NAME_LENGTH], int numStudents)
+{
+    for (int i = 0; i < numStudents; i++) {
+        char* found = strrchr(students[i], ' ');  // Find the last occurrence of space (separating first and last name)
+        if (found != NULL) {
+            if (strcmp(found + 1, lastName) == 0) {
+                return i;  // Found the last name at index i
+            }
+        }
+    }
+    return -1;  // Last name not found
+}
+
+int main()
+{
+    char students[MAX_STUDENTS][MAX_NAME_LENGTH] = {
+        "John Doe",
+        "Alice Smith",
+        "Bob Johnson",
+        "Emily Brown",
+        "Michael Davis"
+    };
+    
+    char lastName[MAX_NAME_LENGTH];
+    printf("Enter the last name to search: ");
+    scanf("%s", lastName);
+    
+    int index = searchLastName(lastName, students, MAX_STUDENTS);
+    
+    if (index != -1) {
+        printf("Last name '%s' found at index %d in the student array.\n", lastName, index);
+    } else {
+        printf("Last name '%s' not found in the student array.\n", lastName);
+    }
+    
+    return 0;
+}

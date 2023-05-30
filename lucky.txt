@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+int reverseNumber(int num)
+{
+    if (num == 0) {
+        return 0;
+    }
+    return (num % 10) + 10 * reverseNumber(num / 10);
+}
+
+int countDigits(int num)
+{
+    if (num == 0) {
+        return 0;
+    }
+    return 1 + countDigits(num / 10);
+}
+
+int main()
+{
+    int num;
+    printf("Enter a number: ");
+    scanf("%d", &num);
+    
+    int reversedNumber = reverseNumber(num);
+    int digitCount = countDigits(reversedNumber);
+    
+    printf("Reversed number: %d\n", reversedNumber);
+    printf("Number of digits: %d\n", digitCount);
+    
+    return 0;
+}
